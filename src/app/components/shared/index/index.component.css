@@ -1,0 +1,27 @@
+.carousel, .image-banner .navbar{
+    width: 100%;
+    height: 550px;
+}
+
+.carousel-background-1{
+    background: url('/assets/images/background-4.jpg') black no-repeat center center scroll;
+    height: 550px;
+    background-size: cover;
+}
+
+.carousel-background-2{
+    background: url('/assets/images/background-4.jpg') black no-repeat center center scroll;
+    height: 550px;
+    background-size: cover;
+}
+
+.carousel-background-3{
+    background: url('/assets/images/background-4.jpg') black no-repeat center center scroll;
+    height: 550px;
+    background-size: cover;
+}
+
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}

@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row vh-100">
+        <div class="col-lg-12 my-auto">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <div class="card-title">
+                        Create new Organization
+                    </div>
+                </div>
+                <div class="card-body ">
+                    <form [formGroup]="signupForm" (ngSubmit)="organizationSubmit()">
+                        <div class="row">
+                            <div class="col-md-6 form-group" [ngClass]="{'text-danger': errors.username}">
+                                <label class="control-label">UserName</label>
+                                <input type="text" (blur)="signupValidation()"
+                                    [ngClass]="{'border-danger': errors.username}" formControlName="username"
+                                    class="form-control" placeholder="enter username">
+                                <span *ngIf="errors.username">
+                                    {{errors.username}}
+                                </span>
+                            </div>
+                            <div class="col-md-6 form-group" [ngClass]="{'text-danger' : errors.roleID}">
+                                <label>Role</label>
+                                <select class="form-control" appSelectValidator="-1" (blur)="signupValidation()"
+                                    formControlName="roleID" [ngClass]="{'border-danger': errors.roleID}">
+                                    <option value="-1">Select</option>
+                                    <option>Admin</option>
+                                    <option>Staff</option>
+                                </select>
+                                <span *ngIf="errors.roleID">
+                                    {{errors.roleID}}
+                                </span>
+                            </div>
+                            <div class="col-md-4 form-group" [ngClass]="{'text-danger': errors.organizationName}">
+                                <label>Organization Name</label>
+                                <input type="text" (blur)="signupValidation()" formControlName="organizationName"
+                                    class="form-control" [ngClass]="{'border-danger': errors.organizationName}"
+                                    placeholder="enter username">
+                                <span *ngIf="errors.organizationName">
+                                    {{errors.organizationName}}
+                                </span>
+                            </div>
+                            <div class="col-md-4 form-group" [ngClass]="{'text-danger': errors.organizationShortCode}">
+                                <label>Short Code</label>
+                                <input type="text" (blur)="signupValidation()"
+                                    formControlName="organizationShortCode" class="form-control"
+                                    [ngClass]="{'border-danger' : errors.organizationShortCode}"
+                                    placeholder="enter username">
+                                <span *ngIf="errors.organizationShortCode">
+                                    {{errors.organizationShortCode}}
+                                </span>
+                            </div>
+                            <div class="col-md-4 form-group" [ngClass]="{'text-danger': errors.organizationAddress}">
+                                <label>Address</label>
+                                <input type="text" (blur)="signupValidation()" formControlName="organizationAddress"
+                                    [ngClass]="{'border-danger': errors.organizationAddress}" class="form-control"
+                                    placeholder="Address">
+                                <span *ngIf="errors.organizationAddress">
+                                    {{errors.organizationAddress}}
+                                </span>
+                            </div>
+                            <div class="col-md-4 form-group" [ngClass]="{'text-danger': errors.organizationPhone}">
+                                <label>Phone</label>
+                                <input type="text" (blur)="signupValidation()" formControlName="organizationPhone"
+                                    class="form-control" [ngClass]="{'border-danger': errors.organizationPhone}"
+                                    placeholder="Phone Number">
+                                <span *ngIf="errors.organizationPhone">
+                                    {{errors.organizationPhone}}
+                                </span>
+                            </div>
+                            <div class="col-md-4 form-group" [ngClass]="{'text-danger': errors.organizationEmail}">
+                                <label>Email</label>
+                                <input type="text" (blur)="signupValidation()" formControlName="organizationEmail"
+                                    class="form-control" [ngClass]="{'border-danger': errors.organizationEmail}"
+                                    placeholder="enter username">
+                                <span *ngIf="errors.organizationEmail">
+                                    {{errors.organizationEmail}}
+                                </span>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary btn-sm">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
