@@ -7,9 +7,9 @@ import { PageNotFoundErrorComponent } from './components/shared/page-not-found-e
 import { InternalServerErrorComponent } from './components/shared/internal-server-error/internal-server-error.component';
 
 const routes: Routes = [
+  { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'index', component: IndexComponent },
-  { path: 'signup', component: SignupComponent },
   { path: 'pagenotfound', component: PageNotFoundErrorComponent },
   { path: 'internalserver', component: InternalServerErrorComponent },
   { path: '', component: IndexComponent }

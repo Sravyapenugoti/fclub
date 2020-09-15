@@ -22,10 +22,10 @@
                             <div class="col-md-6 form-group" [ngClass]="{'text-danger' : errors.roleID}">
                                 <label>Role</label>
                                 <select class="form-control" appSelectValidator="-1" (blur)="signupValidation()"
-                                    formControlName="roleID" [ngClass]="{'border-danger': errors.roleID}">
-                                    <option value="-1">Select</option>
-                                    <option>Admin</option>
-                                    <option>Staff</option>
+                                    formControlName="roleID" [ngClass]="{'border-danger': errors.roleID}" >
+                                    <option [value]="role.roleID" *ngFor="let role of roles">
+                                        {{role.roleName}}
+                                    </option>
                                 </select>
                                 <span *ngIf="errors.roleID">
                                     {{errors.roleID}}

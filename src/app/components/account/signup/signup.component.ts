@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
 import { signup } from 'src/app/models/signup';
+import { roles } from 'src/app/models/roles';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -11,10 +15,18 @@ import { signup } from 'src/app/models/signup';
 export class SignupComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-    private as: AccountService) { }
+    private as: AccountService,
+    private router: Router) { }
+
   signupForm: FormGroup;
+  roles: roles[];
 
   ngOnInit(): void {
+
+    this.as.getRoles().subscribe((data) => {
+      this.roles = data;
+    })
+
     this.signupForm = this.fb.group({
       organizationName: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
       organizationShortCode: ['', [Validators.required,
@@ -37,11 +49,18 @@ export class SignupComponent implements OnInit {
   }
 
   organizationSubmit() {
-    debugger;
     if (this.signupForm.valid) {
       const res = this.signupForm.value as signup;
       this.as.signup(res).subscribe((data) => {
-        console.log(data);
+        if (data.succeeded) {
+          Swal.fire({
+            title: 'registration successfully',
+            text: 'credentials sent to your email',
+            icon: 'success'
+          }).then((result) => {
+              this.router.navigate(["/login"]);
+          })
+        }
       })
       // console.log(this.signupForm.value)
     }

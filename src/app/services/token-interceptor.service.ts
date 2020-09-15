@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { HandlingErrorsService } from './handling-errors.service';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(private es: HandlingErrorsService) { }
+  constructor(private es: HandlingErrorsService,
+              private spinnerService: SpinnerService) { }
 
   intercept(req, next) {
     let tokenizedReq = req.clone({
@@ -18,15 +20,16 @@ export class TokenInterceptorService implements HttpInterceptor {
       }
     });
 
+    this.spinnerService.show();
     return next.handle(tokenizedReq).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          //this.spinnerService.hide();
+          this.spinnerService.hide();
         }
       }, (error : HttpErrorResponse) => {
-        debugger;
+        //debugger;
         this.es.handleError(error);
-        //this.spinnerService.hide();
+        this.spinnerService.hide();
       })
     );
   }
